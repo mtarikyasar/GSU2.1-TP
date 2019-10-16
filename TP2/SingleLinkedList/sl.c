@@ -106,7 +106,6 @@ Person *deleteContact(Person *node, char *nameD, char *surnameD){//working
 
     while(iter->next->next != NULL && flag == 0){
         if ((strcmp(iter->next->name, nameD) == 0) && (strcmp(iter->next->surname, surnameD) == 0)){
-            printf("abuju\n");
             flag = 1;
             break;
         }
