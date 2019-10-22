@@ -20,6 +20,7 @@ int main(){
     City *cityList = (City *)malloc(sizeof(City));
     cityList = NULL;
 
+
     while(choice != 9){
             printf("\nWelcome to Contacts Application.\n");
             printf("[1] Create new contact\n");

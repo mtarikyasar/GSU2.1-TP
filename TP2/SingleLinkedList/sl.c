@@ -48,6 +48,7 @@ Person *addNewContact(Person *node){//working
     return node;
 }
 
+
 City* addNewCity(City* node){//working
     City *iter = node;
     City *newNode = (City *)malloc(sizeof(City));

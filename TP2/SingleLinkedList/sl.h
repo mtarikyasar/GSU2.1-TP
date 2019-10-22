@@ -15,6 +15,7 @@ typedef struct n{
     struct n *next;
 }Person;
 
+
 Person *addNewContact(Person *node);
 City* addNewCity(City* node);
 Person *deleteContact(Person *node, char *nameD, char *surnameD);

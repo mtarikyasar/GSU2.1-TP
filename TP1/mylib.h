@@ -1,6 +1,7 @@
 #ifndef MYLIB_H_
 #define MYLIB_
 
+
 int isLetter(char c);
 int isDigit(char c);
 int isEven(int value);
