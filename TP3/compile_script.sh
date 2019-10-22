@@ -1,0 +1,1 @@
+gcc binaryTree.c -o main
