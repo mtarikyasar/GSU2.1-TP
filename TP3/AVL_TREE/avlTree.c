@@ -8,8 +8,10 @@ int max(int a, int b){
 }
 
 int heightOfTree(node *tree){
-    if (tree == NULL)  
+    if(tree == NULL){ 
         return 0;  
+    }
+
     return tree->height;
 }
 
@@ -217,7 +219,7 @@ void printCurrentLevel(node *tree, int level){
         printf("%d ", tree->data);
     } 
 
-    else if(level > 1) { 
+    else if(level > 1){ 
         printCurrentLevel(tree->left, level-1); 
         printCurrentLevel(tree->right, level-1); 
     } 
@@ -226,7 +228,7 @@ void printCurrentLevel(node *tree, int level){
 void levelorderPrint(node *tree){
     int height = heightOfTree(tree);
 
-    for (int i = 0; i <= height; i++){
+    for(int i = 0; i <= height; i++){
         printCurrentLevel(tree, i);
         printf("\n");
     }

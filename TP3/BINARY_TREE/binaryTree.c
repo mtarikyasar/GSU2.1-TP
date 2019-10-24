@@ -18,7 +18,7 @@ node *insert(node* tree, int x){
 		return tree;	
 	}
 	
-	tree -> left = insert(tree -> left, x);	
+	tree->left = insert(tree -> left, x);	
 
 	return tree;
 }
@@ -121,16 +121,19 @@ void postorderPrint(node *tree){
 }
 
 int heightOfTree(node *tree){
-    if (tree ==NULL)  
-       return 0; 
-   else { 
-       int lDepth = heightOfTree(tree->left); 
-       int rDepth = heightOfTree(tree->right); 
-  
-       if (lDepth > rDepth)  
-           return(lDepth+1);
+    if(tree ==NULL){
+        return 0;
+    }
 
-       else return(rDepth+1); 
+   else{ 
+       int lD = heightOfTree(tree->left); 
+       int rD = heightOfTree(tree->right); 
+  
+       if(lD > rD){
+           return(lD+1);
+       }
+
+       else return(rD+1); 
    }
 }
 
@@ -143,7 +146,7 @@ void printCurrentLevel(node *tree, int level){
         printf("%d ", tree->data);
     } 
 
-    else if(level > 1) { 
+    else if(level > 1){ 
         printCurrentLevel(tree->left, level-1); 
         printCurrentLevel(tree->right, level-1); 
     } 
@@ -152,7 +155,7 @@ void printCurrentLevel(node *tree, int level){
 void levelorderPrint(node *tree){
     int height = heightOfTree(tree);
 
-    for (int i = 0; i <= height; i++){
+    for(int i = 0; i <= height; i++){
         printCurrentLevel(tree, i);
         printf("\n");
     }

@@ -27,7 +27,6 @@ int main(void){
         switch(choice){
             case 0:
                 //Secret case for PDF
-
                 //Adding numbers 10,20,30,40,50,25
                 printf("Adding 10...\n");
                 tree = insertAVL(tree, 10);
