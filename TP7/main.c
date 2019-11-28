@@ -56,61 +56,92 @@ int main(void){
         case 1:
 
             printf("Sorted 100 Number (Smaller to Greater)\n");
-            measureTime(arrHunStB, 100, 1);
+            measureTime(arrHunStB, 100, choice);
             printf("Sorted 100 Number (Greater to Smaller)\n");
-            measureTime(arrHunBtS, 100, 1);
+            measureTime(arrHunBtS, 100, choice);
             printf("Unsorted 100 Number\n");
-            measureTime(arrHun, 100, 1);
+            measureTime(arrHun, 100, choice);
             
             ////////////////////////////////////
             
             printf("\n\n");
             printf("Sorted 1000 Number (Smaller to Greater)\n");
-            measureTime(arrThStB, 1000, 1);
+            measureTime(arrThStB, 1000, choice);
             printf("Sorted 1000 Number (Greater to Smaller)\n");
-            measureTime(arrThBtS, 1000, 1);
+            measureTime(arrThBtS, 1000, choice);
             printf("Unsorted 1000 Number\n");
-            measureTime(arrTh, 1000, 1);
+            measureTime(arrTh, 1000, choice);
 
             ////////////////////////////////////
             
             printf("\n\n");
             printf("Sorted 10000 Number (Smaller to Greater)\n");
-            measureTime(arrTenThStB, 10000, 2);
+            measureTime(arrTenThStB, 10000, choice);
             printf("Sorted 10000 Number (Greater to Smaller)\n");
-            measureTime(arrTenThBtS, 10000, 2);
+            measureTime(arrTenThBtS, 10000, choice);
             printf("Unsorted 1000 Number\n");
-            measureTime(arrTenTh, 10000, 2);
+            measureTime(arrTenTh, 10000, choice);
+
+            break;
+
+        case 2:
+
+            printf("Sorted 100 Number (Smaller to Greater)\n");
+            measureTime(arrHunStB, 100, choice);
+            printf("Sorted 100 Number (Greater to Smaller)\n");
+            measureTime(arrHunBtS, 100, choice);
+            printf("Unsorted 100 Number\n");
+            measureTime(arrHun, 100, choice);
+            
+            ////////////////////////////////////
+            
+            printf("\n\n");
+            printf("Sorted 1000 Number (Smaller to Greater)\n");
+            measureTime(arrThStB, 1000, choice);
+            printf("Sorted 1000 Number (Greater to Smaller)\n");
+            measureTime(arrThBtS, 1000, choice);
+            printf("Unsorted 1000 Number\n");
+            measureTime(arrTh, 1000, choice);
+
+            ////////////////////////////////////
+            
+            printf("\n\n");
+            printf("Sorted 10000 Number (Smaller to Greater)\n");
+            measureTime(arrTenThStB, 10000, choice);
+            printf("Sorted 10000 Number (Greater to Smaller)\n");
+            measureTime(arrTenThBtS, 10000, choice);
+            printf("Unsorted 1000 Number\n");
+            measureTime(arrTenTh, 10000, choice);
 
             break;
 
         case 3:
             printf("Sorted 100 Number (Smaller to Greater)\n");
-            measureTime(arrHunStB, 100, 2);
+            measureTime(arrHunStB, 100, choice);
             printf("Sorted 100 Number (Greater to Smaller)\n");
-            measureTime(arrHunBtS, 100, 2);
+            measureTime(arrHunBtS, 100, choice);
             printf("Unsorted 100 Number\n");
-            measureTime(arrHun, 100, 2);
+            measureTime(arrHun, 100, choice);
             
             ////////////////////////////////////
             
             printf("\n\n");
             printf("Sorted 1000 Number (Smaller to Greater)\n");
-            measureTime(arrThStB, 1000, 2);
+            measureTime(arrThStB, 1000, choice);
             printf("Sorted 1000 Number (Greater to Smaller)\n");
-            measureTime(arrThBtS, 1000, 2);
+            measureTime(arrThBtS, 1000, choice);
             printf("Unsorted 1000 Number\n");
-            measureTime(arrTh, 1000, 2);
+            measureTime(arrTh, 1000, choice);
 
             ////////////////////////////////////
             
             printf("\n\n");
             printf("Sorted 10000 Number (Smaller to Greater)\n");
-            measureTime(arrTenThStB, 10000, 2);
+            measureTime(arrTenThStB, 10000, choice);
             printf("Sorted 10000 Number (Greater to Smaller)\n");
-            measureTime(arrTenThBtS, 10000, 2);
+            measureTime(arrTenThBtS, 10000, choice);
             printf("Unsorted 1000 Number\n");
-            measureTime(arrTenTh, 10000, 2);
+            measureTime(arrTenTh, 10000, choice);
             break;
         
         }

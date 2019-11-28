@@ -132,6 +132,11 @@ void measureTime(int arr[], int size, int choice){
         break;
     
     case 2:
+        start = clock();
+        selectionSort(arr, size);
+        stop = clock();
+        elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC; printf("\tTime elapsed for Selection Sort (For %d number) in ms: %.5f\n", size, elapsed);
+        break;
 
     case 3:
         start = clock();
@@ -140,5 +145,30 @@ void measureTime(int arr[], int size, int choice){
         elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC; printf("\tTime elapsed for Insertion Sort (For %d number) in ms: %.5f\n", size, elapsed);
         break;
     
+    }
+}
+
+void selectionSort(int arr[], int size){
+    int i, j, min, temp;
+    int arrCop[size];
+
+    for (int i = 0; i < size; i++){
+        arrCop[i] = arr[i];
+    }
+    
+
+    for(i = 0; i < size; i++){
+        min = i;
+
+        for(j = i; j < size; j++){
+
+            if(arrCop[j] < arrCop[min]) {
+                min = j;
+            }
+        }
+
+        temp = arrCop[min];
+        arrCop[min] = arrCop[i];
+        arrCop[i] = temp;
     }
 }
