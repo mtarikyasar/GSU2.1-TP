@@ -11,5 +11,8 @@ void printArray(int arr[], int size);
 void insertionSort(int a[], int size);
 void measureTime(int arr[], int size, int choice);
 void selectionSort(int arr[], int size);
+void merge(int *array, int low, int middle, int high);
+void mergeSort(int *array, int low, int high);
+void shellSort(int *array, int size);
 
 #endif
