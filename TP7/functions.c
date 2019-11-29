@@ -3,10 +3,16 @@
 #include <stdlib.h>
 #include <time.h>
 
-void fillArray(int array[], int size){
+void fillArray(int *array, int size){
     for (int i = 0; i < size; i++){
-        array[i] = rand()%size;
+        array[i] = i;
     }  
+}
+
+void fillArrayReverse(int *array, int size){
+    for (int i = 0; i < size; i++){
+        array[i] = size-i-1;
+    }
 }
 
 void printArray(int arr[], int size){
@@ -16,50 +22,27 @@ void printArray(int arr[], int size){
     printf("\n\n");
 }
 
-int findMin(int arr[], int size){
-    int min = arr[0];
-    int index = 0;
+//Fisher and Yates Algorithm
+int *randomize(int *a, int size){
+    int *arr;
+    arr = malloc(size*sizeof(int));
+    srand (time(NULL));
 
-    for (int i = 0; i < size; i++){
-        if (arr[i] < min){
-            min = arr[i];
-            index = i;
-        }
-    }
-
-    arr[index] = size+1;
-    return min;
-}
-
-int findMax(int *arr, int size){
-    int max = arr[0];
-    int index = 0;
-
-    for (int i = 0; i < size; i++){
-        if (arr[i] > max){
-            max = arr[i];
-            index = i;
-        }
-    }
-
-    arr[index] = size*(-1);
-    return max;
-}
-
-int *sortBySmallest(int *arr, int newArray[], int size){
-    for (int i = 0; i < size; i++){
-        newArray[i] = findMin(arr, size);
-    }
-
-    return newArray;
-}
-
-int *sortByBiggest(int *arr, int newArray[], int size){
-    for (int i = 0; i < size; i++){
-        newArray[i] = findMax(arr, size);
+    for (size_t i = 0; i < size; i++){
+        arr[i] = a[i];
     }
     
-    return newArray;
+    int temp = 0;
+  
+    for (int i = size-1; i > 0; i--){ 
+        int j = rand() % (i+1); 
+
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    return arr;
 }
 
 void bubbleSort(int *a, int size){
@@ -119,6 +102,13 @@ void measureTime(int arr[], int size, int choice){
         insertionSort(arr, size);
         stop = clock();
         elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC; printf("\tTime elapsed for Insertion Sort (For %d number) in ms: %.5f\n", size, elapsed);
+        break;
+
+    case 4:
+        start = clock();
+        quickSort(arr, size);
+        stop = clock();
+        elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC; printf("\tTime elapsed for Quick Sort (For %d number) in ms: %.5f\n", size, elapsed);
         break;
 
     case 5:
@@ -238,4 +228,48 @@ void shellSort(int *array, int size){
         array[k] = v;
       }
   }
+}
+
+void quickSortWrapper(int *array, int low, int high){
+    // TODO
+    int p;
+    if (low < high) {
+        p = partition(array, low, high);
+        quickSortWrapper(array, low, p-1);
+        quickSortWrapper(array, p+1, high);
+    }
+}
+
+void quickSort(int *array, int size){
+    quickSortWrapper(array, 0, size-1);
+}
+
+int partition(int *array, int low, int high){
+    int pivot = high;
+    int newPivot = low;
+    int i;
+    int temp = 0;
+
+    for (i = low; i < high; i++){
+        if (array[i] < array[pivot]){
+            temp = array[i];
+            array[i] = array[newPivot];
+            array[newPivot] = temp;
+            newPivot++;
+        }
+    }
+    temp = array[newPivot];
+    array[newPivot] = array[pivot];
+    array[pivot] = temp;
+
+    return newPivot;
+}
+
+void sortByChoice(int *array1, int *array2, int *array3, int size, int choice){
+    printf("\n\nSorted %d Number (Smaller to Greater)\n", size);
+    measureTime(array1, size, choice);
+    printf("Sorted %d Number (Greater to Smaller)\n", size);
+    measureTime(array2, size, choice);
+    printf("Unsorted %d Number\n", size);
+    measureTime(array3, size, choice);
 }
