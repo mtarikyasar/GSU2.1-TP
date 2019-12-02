@@ -87,42 +87,56 @@ void measureTime(int arr[], int size, int choice){
         start = clock();
         bubbleSort(arr, size);
         stop = clock();
-        elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC; printf("\tTime elapsed for Bubble Sort (For %d number) in ms: %.5f\n", size, elapsed);
+        elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+        printf("\tTime elapsed for Bubble Sort (For %d number) in ms: %.5f\n", size, elapsed);
         break;
     
     case 2:
         start = clock();
         selectionSort(arr, size);
         stop = clock();
-        elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC; printf("\tTime elapsed for Selection Sort (For %d number) in ms: %.5f\n", size, elapsed);
+        elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+        printf("\tTime elapsed for Selection Sort (For %d number) in ms: %.5f\n", size, elapsed);
         break;
 
     case 3:
         start = clock();
         insertionSort(arr, size);
         stop = clock();
-        elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC; printf("\tTime elapsed for Insertion Sort (For %d number) in ms: %.5f\n", size, elapsed);
+        elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+        printf("\tTime elapsed for Insertion Sort (For %d number) in ms: %.5f\n", size, elapsed);
         break;
 
     case 4:
         start = clock();
         quickSort(arr, size);
         stop = clock();
-        elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC; printf("\tTime elapsed for Quick Sort (For %d number) in ms: %.5f\n", size, elapsed);
+        elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+        printf("\tTime elapsed for Quick Sort (For %d number) in ms: %.5f\n", size, elapsed);
         break;
 
     case 5:
         start = clock();
         mergeSort(arr, 0, size-1);
         stop = clock();
-        elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC; printf("\tTime elapsed for Merge Sort (For %d number) in ms: %.5f\n", size, elapsed);
+        elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+        printf("\tTime elapsed for Merge Sort (For %d number) in ms: %.5f\n", size, elapsed);
+        break;
+
+    case 6:
+        start = clock();
+        bucketSort(arr, size);
+        stop = clock();
+        elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+        printf("\tTime elapsed for Bucket Sort (For %d number) in ms: %.5f\n", size, elapsed);
         break;
 
     case 7:
         start = clock();
         shellSort(arr, size);
         stop = clock();
-        elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC; printf("\tTime elapsed for Shell Sort (For %d number) in ms: %.5f\n", size, elapsed);
+        elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+        printf("\tTime elapsed for Shell Sort (For %d number) in ms: %.5f\n", size, elapsed);
         break;
     }
 }
@@ -272,4 +286,131 @@ void sortByChoice(int *array1, int *array2, int *array3, int size, int choice){
     measureTime(array2, size, choice);
     printf("Unsorted %d Number\n", size);
     measureTime(array3, size, choice);
+}
+
+void bucketSort(int *arr, int size){
+    int count[size];
+
+    for (int i = 0; i < size; i++){
+        count[i] = 0;
+    }
+
+    for (int i = 0; i < size; i++){
+        (count[arr[i]])++;
+    }
+    
+    for (int i = 0, j = 0; i < size; i++){
+        for (; count[i] > 0; (count[i])--){
+            arr[j++] = i;
+        }
+    }
+}
+
+void fastestAlgorithm(int *arr, int size){
+    int newArray[size];
+    double arrayResults[7];
+    clock_t start;
+    clock_t stop;
+    double elapsed = 0;
+
+    for (int i = 0; i < 7; i++){
+        arrayResults[i] = 0;
+    }
+
+    for (int j = 0; j < 7; j++){
+        for (int i = 0; i < size; i++){
+            newArray[i] = arr[i];
+        }
+        switch(j){
+            case 0:
+                start = clock();
+                bubbleSort(newArray, size);
+                stop = clock();
+                arrayResults[j] = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+                break;
+
+            case 1:
+                start = clock();
+                selectionSort(newArray, size);
+                stop = clock();
+                arrayResults[j] = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+                break;
+
+            case 2:
+                start = clock();
+                insertionSort(newArray, size);
+                stop = clock();
+                arrayResults[j] = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+                break;
+
+            case 3:
+                start = clock();
+                quickSort(newArray, size);
+                stop = clock();
+                arrayResults[j] = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+                break;
+
+
+            case 4:
+                start = clock();
+                mergeSort(newArray, 0, size-1);
+                stop = clock();
+                arrayResults[j] = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+                break;
+
+
+            case 5:
+                start = clock();
+                bucketSort(newArray, size);
+                stop = clock();
+                arrayResults[j] = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+                break;
+
+
+            case 6:
+                start = clock();
+                shellSort(newArray, size);
+                stop = clock();
+                arrayResults[j] = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+                break;
+        }
+    }
+    
+    double min = arrayResults[0];
+    int index = 0;
+    for (int i = 0; i < 7; i++){
+        if (arrayResults[i] < min){
+            min = arrayResults[i];
+            index = i+1;
+        }
+    }
+
+    switch (index){
+        case 1:
+            printf("Bubble Sort is the fastest one by %lf\n", arrayResults[index-1]);
+            break;
+        case 2:
+            printf("Selection Sort is the fastest one by %lf\n", arrayResults[index-1]);
+            break;
+        
+        case 3:
+            printf("Insertion Sort is the fastest one by %lf\n", arrayResults[index-1]);
+            break;
+        
+        case 4:
+            printf("Quick Sort is the fastest one by %lf\n", arrayResults[index-1]);
+            break;
+        
+        case 5:
+            printf("Merge Sort is the fastest one by %lf\n", arrayResults[index-1]);
+            break;
+        
+        case 6:
+            printf("Bucket Sort is the fastest one by %lf\n", arrayResults[index-1]);
+            break;
+        
+        case 7:
+            printf("Shell Sort is the fastest one by %lf\n", arrayResults[index-1]);
+            break;
+    }
 }

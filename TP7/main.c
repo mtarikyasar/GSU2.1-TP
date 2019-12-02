@@ -35,8 +35,7 @@ int main(void){
     fillArrayReverse(arrTenThBtS, TENTH);
     arrTenTh = randomize(arrTenThStB, TENTH);
 
-    while(choice != 8){
-        
+    while(choice != 9){
         printf("\n[1] Bubble Sort\n");
         printf("[2] Selection Sort\n");
         printf("[3] Insertion Sort\n");
@@ -44,16 +43,23 @@ int main(void){
         printf("[5] Merge Sort\n");
         printf("[6] Bucket Sort\n"); //not done yet
         printf("[7] Shell Sort\n"); 
-        printf("[8] Exit\n");
+        printf("[8] Find the fastest one\n");
+        printf("[9] Exit\n");
         printf("Your choice is: ");
         scanf("%d", &choice);
 
+        if (choice == 8){
+            fastestAlgorithm(arrTenTh, TENTH);
+        }
+
+        else{
         sortByChoice(arrHunStB, arrHunBtS, arrHun, HUN, choice);
         ////////////////////////////////////
         sortByChoice(arrThStB, arrThBtS, arrTh, TH, choice);
         ////////////////////////////////////
         sortByChoice(arrTenThStB, arrTenThBtS, arrTenTh, TENTH, choice);
         }
+    }
 
     free(arrHun);
     free(arrHunStB);

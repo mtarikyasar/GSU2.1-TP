@@ -16,5 +16,7 @@ void quickSortWrapper(int *array, int low, int high);
 void quickSort(int *array, int size);
 int partition(int *array, int low, int high);
 void sortByChoice(int *array1, int *array2, int *array3, int size, int choice);
+void bucketSort(int *arr, int size);
+void fastestAlgorithm(int *arr, int size);
 
 #endif
