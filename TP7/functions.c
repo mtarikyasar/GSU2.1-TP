@@ -57,7 +57,6 @@ void bubbleSort(int *a, int size){
            }
        }
     }
-
 }
 
 void insertionSort(int *a, int size){
@@ -225,14 +224,13 @@ void mergeSort(int *array, int low, int high){
 
 void shellSort(int *array, int size){
   int gaps[] = {4193, 1073, 281, 77, 23, 8, 1};
-  int i, j, k;
+  int k, h, v;
   int sizeGaps = sizeof(gaps)/sizeof(int);
 
-  int h, v;
-  for(i = 0; i<sizeGaps; i++){
+  for(int i = 0; i<sizeGaps; i++){
       h = gaps[i];
 
-      for(j=h; j<size; j++){
+      for(int j=h; j<size; j++){
         v=array[j];
         k = j;
         while(k>=h && array[k-h]>v){
@@ -245,7 +243,6 @@ void shellSort(int *array, int size){
 }
 
 void quickSortWrapper(int *array, int low, int high){
-    // TODO
     int p;
     if (low < high) {
         p = partition(array, low, high);
@@ -307,6 +304,7 @@ void bucketSort(int *arr, int size){
 }
 
 void fastestAlgorithm(int *arr, int size){
+    printf("Algorithms will be compared in randomized arrays of 10.000 numbers:\n\n");
     int newArray[size];
     double arrayResults[7];
     clock_t start;
@@ -321,6 +319,7 @@ void fastestAlgorithm(int *arr, int size){
         for (int i = 0; i < size; i++){
             newArray[i] = arr[i];
         }
+
         switch(j){
             case 0:
                 start = clock();
@@ -350,7 +349,6 @@ void fastestAlgorithm(int *arr, int size){
                 arrayResults[j] = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
                 break;
 
-
             case 4:
                 start = clock();
                 mergeSort(newArray, 0, size-1);
@@ -358,14 +356,12 @@ void fastestAlgorithm(int *arr, int size){
                 arrayResults[j] = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
                 break;
 
-
             case 5:
                 start = clock();
                 bucketSort(newArray, size);
                 stop = clock();
                 arrayResults[j] = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
                 break;
-
 
             case 6:
                 start = clock();
@@ -384,6 +380,14 @@ void fastestAlgorithm(int *arr, int size){
             index = i+1;
         }
     }
+
+        printf("Bubble Sort: %lf\n", arrayResults[0]);
+        printf("Selection Sort: %lf\n", arrayResults[1]);
+        printf("Insertion Sort: %lf\n", arrayResults[2]);
+        printf("Quick Sort: %lf\n", arrayResults[3]);
+        printf("Merge Sort: %lf\n", arrayResults[4]);
+        printf("Bucket Sort: %lf\n", arrayResults[5]);
+        printf("Shell Sort: %lf\n\n", arrayResults[6]);
 
     switch (index){
         case 1:

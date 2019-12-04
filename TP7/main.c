@@ -5,7 +5,7 @@
 
 #define HUN 100
 #define TH 1000
-#define TENTH 10000
+#define TENTH 1000
 
 int main(void){
     int *arrHun, *arrHunStB, *arrHunBtS;
@@ -41,7 +41,7 @@ int main(void){
         printf("[3] Insertion Sort\n");
         printf("[4] Quick Sort\n");
         printf("[5] Merge Sort\n");
-        printf("[6] Bucket Sort\n"); //not done yet
+        printf("[6] Bucket Sort\n");
         printf("[7] Shell Sort\n"); 
         printf("[8] Find the fastest one\n");
         printf("[9] Exit\n");
@@ -52,6 +52,10 @@ int main(void){
             fastestAlgorithm(arrTenTh, TENTH);
         }
 
+        else if(choice == 9){
+            break;
+        }
+
         else{
         sortByChoice(arrHunStB, arrHunBtS, arrHun, HUN, choice);
         ////////////////////////////////////
@@ -60,6 +64,8 @@ int main(void){
         sortByChoice(arrTenThStB, arrTenThBtS, arrTenTh, TENTH, choice);
         }
     }
+
+    
 
     free(arrHun);
     free(arrHunStB);
