@@ -4,6 +4,14 @@
 
 #define MAXCHARCOUNT 100
 
+int sizeOfWord(char *word){
+    int i = 0;
+    while(word[i] != '\0')
+        i++;
+
+    return i;
+}
+
 int upperCase(char c){
     if (c >= 'a' && c <= 'z'){
         return 0;
@@ -92,3 +100,94 @@ void ceaserDecoder(char *word, int shiftCount){
 
     printf("%s\n", word);
 }
+
+void vigenereEncoder(char *word, char *keyWord){
+    char newWord[MAXCHARCOUNT];
+    char letterTableLower[26][26];
+    int index1 = 0, index2 = 0;
+    int counter = 0;
+    int i = 0;
+
+    //create matrix
+    for (int i = 0; i < 26; i++){
+        for (int j = 0; j < 26; j++){
+            counter = 97+i+j;
+            if(counter > 122) counter -= 26;
+            letterTableLower[i][j] = counter;
+        }
+    }
+
+    while(i < sizeOfWord(word)){
+        newWord[i] = keyWord[i % sizeOfWord(keyWord)];
+        i++;
+    }
+
+    i = 0;
+
+    while(newWord[i] != '\0'){
+        for (int x = 0; x < 26; x++)
+        {
+            if (word[i] == letterTableLower[x][0]){
+                index1 = x;
+            }
+        }
+
+        for (int x = 0; x < 26; x++)
+        {
+            if(newWord[i] == letterTableLower[0][x]){
+                index2 = x;
+            }
+        }
+
+        word[i] = letterTableLower[index1][index2];
+        i++;
+    }
+
+    printf("Ciphertext is: %s\n\n", word);
+}
+
+void vigenereDecoder(char *word, char *keyWord){
+    char newWord[MAXCHARCOUNT];
+    char letterTableLower[26][26];
+    char letterTableUpper[26][26];
+    int index1 = 0, index2 = 0;
+    int counter = 0;
+    int i = 0;
+
+    for (int i = 0; i < 26; i++){
+        for (int j = 0; j < 26; j++){
+            counter = 97+i+j;
+            if(counter > 122) counter -= 26;
+            letterTableLower[i][j] = counter;
+        }
+    }
+
+    while(i < sizeOfWord(word)){
+        newWord[i] = keyWord[i % sizeOfWord(keyWord)];
+        i++;
+    }
+
+    i = 0;
+
+    while(newWord[i] != '\0'){
+        for (int x = 0; x < 26; x++)
+        {
+            if (newWord[i] == letterTableLower[0][x]){
+                index1 = x;
+            }
+        }
+
+        for (int x = 0; x < 26; x++)
+        {
+            if(word[i] == letterTableLower[x][index1]){
+                index2 = x;
+            }
+        }
+
+        word[i] = letterTableLower[index2][0];
+        i++;
+    }
+
+    printf("Decoded text is: %s\n\n", word);
+}
+
