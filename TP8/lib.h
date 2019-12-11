@@ -10,8 +10,10 @@ int sizeOfWord(char *word);
 void matrixCipherEncoder(char *word);
 void matrixCipherDecoder(char *word);
 void rsaAlgorithmEncoder(char* word, int p, int q);
+void rsaAlgorithmDecoder(char* word, int p, int q);
 int isPrime(int x);
 int reverseNumber(int x);
 int upCase(char c);
+int gcd(int a, int h);
 
 #endif

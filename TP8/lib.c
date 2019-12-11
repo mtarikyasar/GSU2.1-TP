@@ -276,22 +276,80 @@ void rsaAlgorithmEncoder(char* word, int p, int q){
     //Public key
     double x = p*q;
     double e = 2;
-    
+
     //Private key
     double phi = (p-1)*(q-1);
     double k = 2;
     double d = ((k*phi) + 1)/e;
     
+    while (e < phi) { 
+        if (gcd(e, phi)==1) 
+            break; 
+        else
+            e++; 
+    }
+
     int i = 0;
 
     while(word[i] != '\0'){
-        result = result*100 + (long double)upCase(word[i]);
+        if((upCase(word[i])-64 >= 10)){
+            result = result*100 + ((long double)upCase(word[i])-64);
+        }
+        else{
+            result = result*10 + ((long double)upCase(word[i])-64);
+        }
+
         i++;
     }
 
     long double encrypted = pow(result, e);
     encrypted = fmod(encrypted, x);
     printf("Encrypted message is: %.0LF\n", encrypted);
+}
+
+//Not working
+void rsaAlgorithmDecoder(char* word, int p, int q){
+    int size = sizeOfWord(word);
+    long double result = 0;
+    
+    //Public key
+    double x = p*q;
+    double e = 2;
+    
+    //Private key
+    double phi = (p-1)*(q-1);
+    double k = 2;
+    double d = ((k*phi) + 1)/e;
+
+    while (e < phi){ 
+        if (gcd(e, phi)==1) 
+            break; 
+        else
+            e++; 
+    } 
+    
+    int i = 0;
+
+    while(word[i] != '\0'){
+        if((upCase(word[i])-64 >= 10)){
+            result = result*100 + ((long double)upCase(word[i])-64);
+        }
+        else{
+            result = result*10 + ((long double)upCase(word[i])-64);
+        }
+
+        i++;
+    }
+
+
+    long double encrypted = pow(result, e);
+    encrypted = fmod(encrypted, x);
+    printf("\n\n\n%LF and %lf\n\n\n", encrypted, d);
+
+    double decrypted = pow(encrypted, d);
+    printf("\n\n\n--|%F|--\n\n\n", decrypted);
+    decrypted = fmod(decrypted, x);
+
 }
 
 int isPrime(int x){
@@ -339,3 +397,14 @@ int upCase(char c){
     }
         return c;
 }
+
+int gcd(int x, int y){ 
+    int temp; 
+    while (1){ 
+        temp = x%y; 
+        if (temp == 0) 
+          return y; 
+        x = y; 
+        y = temp; 
+    } 
+} 

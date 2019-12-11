@@ -78,7 +78,8 @@ int main(void){
                 break;
 
             case 8:
-
+                rsaAlgorithmDecoder(word, p, q);
+                break;
 
             case 9:
                 break;
