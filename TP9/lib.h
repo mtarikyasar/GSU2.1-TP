@@ -21,16 +21,6 @@ typedef struct stud{
 typedef struct n{
 	char name[50];
     char surname[50];
-    int gradeOne;
-    int gradeTwo;
-    int gradeThree;
-    int creditCourseOne;
-    int creditCourseTwo;
-    int creditCourseThree;
-    char courseOne[2];
-    char courseTwo[2];
-    char courseThree[2];
-    double averageGrade;
 	struct n* left;
 	struct n* right;
 }Tree;

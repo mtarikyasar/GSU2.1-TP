@@ -28,12 +28,13 @@ Students *addNewContact(Students *node){
 	else{
         if(strcmp(newNode->surname, iter->surname) < 0){
             newNode->next = node;
+            node->prev = newNode;
             newNode->prev = NULL;
             return newNode;
         }
 
 		while(iter->next != NULL){
-			if (strcmp(newNode->surname, iter->next->surname) < 0){
+			if(strcmp(newNode->surname, iter->next->surname) < 0){
                 iter->next->prev = newNode;
                 newNode->next = iter->next;
                 iter->next = newNode;
@@ -202,7 +203,7 @@ Tree *createBinaryTree(Tree *binaryTree, Students *node){
 }
 
 void compareGrades(Students *node, double x){
-    printf("\n---Students who have average grade greater than %lf---\n", x);
+    printf("\n---Students who have average grade greater than %.0lf---\n", x);
     Students *iter = node;
     double decryptedGreade = 0;
 
